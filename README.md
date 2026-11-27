@@ -195,7 +195,27 @@ use FileZilla to copy the file across.
 
 ---
 
-## 6. Honest status
+## 6. Building it without a Mac — what does not work
+
+Recorded here so it is not tried twice:
+
+* **GitHub macOS runners** were refused on this account (job cancelled within
+  seconds, before any step ran). Free personal accounts do not get macOS
+  minutes without a payment method on file.
+* **GitHub Linux runners** start fine, and the project builds a valid `.deb`
+  there — but the executable cannot be produced. A Linux `swiftc` ships no
+  `arm64-apple-ios` standard-library modules, so every compile fails with
+  `unable to load standard library for target 'arm64-apple-ios12.0'`. Apple
+  publishes no Swift SDK for iOS targets from Linux; `swift-sdk-generator`
+  supports Linux and FreeBSD targets only.
+* **Swift for Windows** installs a compiler, but its WiX bundle failed on the
+  Windows box here (`0x80070002` on `bld.asserts.msi`), and even installed it
+  would hit the same missing iOS stdlib modules.
+
+The supported paths are a Mac with Xcode (Theos or XcodeGen), or an iOS
+cross-toolchain that ships Apple's own iOS Swift modules.
+
+## 7. Honest status
 
 * The source here is **written from the observed behaviour and assets of the
   shipped app**, not recovered from its code — the binary has no symbols and no
@@ -210,7 +230,7 @@ use FileZilla to copy the file across.
   it cannot be built on Windows, and a prebuilt binary would have to be signed
   with a certificate this project does not have.
 
-## 7. Files
+## 8. Files
 
 ```
 y2k-ios12/
