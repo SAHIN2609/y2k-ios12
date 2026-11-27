@@ -66,15 +66,15 @@ jobs:
       - name: Fetch ldid
         run: |
           set -eux
-          # Procursus build of ldid, used to ad-hoc sign the Mach-O.
-          curl -fsSL -o /tmp/ldid.deb \
-            "https://github.com/ProcursusTeam/ldid/releases/latest/download/ldid_linux_x86_64.deb" \
-            || curl -fsSL -o /tmp/ldid.deb \
-            "https://apt.procurs.us/pool/main/iphoneos-arm64/1700/ldid/ldid_2.1.5-procursus7_iphoneos-arm64.deb"
-          dpkg-deb -x /tmp/ldid.deb /tmp/ldid
-          sudo cp /tmp/ldid/usr/bin/ldid /usr/local/bin/ldid
-          sudo chmod +x /usr/local/bin/ldid
-          ldid -v || true
+          # Build ldid from source: the prebuilt Procursus debs 404'd and the
+          # arm64 package would not run on this x86_64 runner anyway.
+          sudo apt-get install -y --no-install-recommends cmake libssl-dev libplist-dev git
+          git clone --depth 1 https://github.com/ProcursusTeam/ldid.git /tmp/ldid-src
+          cd /tmp/ldid-src
+          git submodule update --init --recursive
+          make -j"$(nproc)" CXXFLAGS="-O2 -std=c++17"
+          sudo install -m 0755 ./ldid /usr/local/bin/ldid
+          ldid -v || ldid --version || true
 
       - name: Typecheck every Swift file against the iOS SDK
         id: typecheck
