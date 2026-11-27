@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%@%@ / week</key>
+	<string>%1$@%2$@ / week</string>
+	<key>%lld/%lld</key>
+	<string>%lld/%lld</string>
+	<key>/week</key>
+	<string>/week</string>
+	<key>/year</key>
+	<string>/year</string>
+	<key>0</key>
+	<string>0</string>
+	<key>1</key>
+	<string>1</string>
+	<key>16:9</key>
+	<string>16:9</string>
+	<key>1:1</key>
+	<string>1:1</string>
+	<key>2:3</key>
+	<string>2:3</string>
+	<key>4:5</key>
+	<string>4:5</string>
+	<key>7 day free trial</key>
+	<string>7 day free trial</string>
+	<key>7 days free • No payment today • Cancel anytime</key>
+	<string>7 days free • No payment today • Cancel anytime</string>
+	<key>9:16</key>
+	<string>9:16</string>
+	<key>?</key>
+	<string>?</string>
+	<key>About</key>
+	<string>About</string>
+	<key>Add to Library</key>
+	<string>Add to Library</string>
+	<key>Apply tons of vintage filters and effects</key>
+	<string>Apply tons of vintage filters and effects</string>
+	<key>Arabic</key>
+	<string>Arabic</string>
+	<key>Aspect Ratio</key>
+	<string>Aspect Ratio</string>
+	<key>Black</key>
+	<string>Black</string>
+	<key>Blue</key>
+	<string>Blue</string>
+	<key>Blur</key>
+	<string>Blur</string>
+	<key>Brown</key>
+	<string>Brown</string>
+	<key>Cancel</key>
+	<string>Cancel</string>
+	<key>Cancel anytime</key>
+	<string>Cancel anytime</string>
+	<key>Chinese (Traditional)</key>
+	<string>Chinese (Traditional)</string>
+	<key>Clip</key>
+	<string>Clip</string>
+	<key>Collage</key>
+	<string>Collage</string>
+	<key>Color Burn</key>
+	<string>Color Burn</string>
+	<key>Contact</key>
+	<string>Contact</string>
+	<key>Continue</key>
+	<string>Continue</string>
+	<key>Coquette</key>
+	<string>Coquette</string>
+	<key>Creep</key>
+	<string>Creep</string>
+	<key>Crop</key>
+	<string>Crop</string>
+	<key>Cybergoth</key>
+	<string>Cybergoth</string>
+	<key>Cyberpunk</key>
+	<string>Cyberpunk</string>
+	<key>Cybersigilism</key>
+	<string>Cybersigilism</string>
+	<key>Delete</key>
+	<string>Delete</string>
+	<key>Difference</key>
+	<string>Difference</string>
+	<key>Distort</key>
+	<string>Distort</string>
+	<key>Drag and drop stickers from our large selection</key>
+	<string>Drag and drop stickers from our large selection</string>
+	<key>Edit</key>
+	<string>Edit</string>
+	<key>Edit photos like we're back in the 2000s</key>
+	<string>Edit photos like we're back in the 2000s</string>
+	<key>Edited with</key>
+	<string>Edited with</string>
+	<key>English</key>
+	<string>English</string>
+	<key>Erase</key>
+	<string>Erase</string>
+	<key>Error</key>
+	<string>Error</string>
+	<key>Evangelion</key>
+	<string>Evangelion</string>
+	<key>Face</key>
+	<string>Face</string>
+	<key>Failed to load subscription options</key>
+	<string>Failed to load subscription options</string>
+	<key>Failed to redeem offer code: %@</key>
+	<string>Failed to redeem offer code: %@</string>
+	<key>Failed to restore purchases. Please try again.</key>
+	<string>Failed to restore purchases. Please try again.</string>
+	<key>Film</key>
+	<string>Film</string>
+	<key>Filters</key>
+	<string>Filters</string>
+	<key>Flowers</key>
+	<string>Flowers</string>
+	<key>Follow our socials</key>
+	<string>Follow our socials</string>
+	<key>Frames</key>
+	<string>Frames</string>
+	<key>French</key>
+	<string>French</string>
+	<key>Frutiger Aero</key>
+	<string>Frutiger Aero</string>
+	<key>Frutiger Metro</key>
+	<string>Frutiger Metro</string>
+	<key>General</key>
+	<string>General</string>
+	<key>German</key>
+	<string>German</string>
+	<key>Ghost</key>
+	<string>Ghost</string>
+	<key>Glow</key>
+	<string>Glow</string>
+	<key>Green</key>
+	<string>Green</string>
+	<key>Hard Light</key>
+	<string>Hard Light</string>
+	<key>Hindi</key>
+	<string>Hindi</string>
+	<key>Info</key>
+	<string>Info</string>
+	<key>Intensity</key>
+	<string>Intensity</string>
+	<key>Invert</key>
+	<string>Invert</string>
+	<key>Italian</key>
+	<string>Italian</string>
+	<key>Language</key>
+	<string>Language</string>
+	<key>Lastly _(._.)_, you can use two fingers and rotate them around the center of the sticker to change its orientation.</key>
+	<string>Lastly _(._.)_, you can use two fingers and rotate them around the center of the sticker to change its orientation.</string>
+	<key>Layout</key>
+	<string>Layout</string>
+	<key>Let's add some stickers XD. To get started, tap on the "Black" folder. If you want to skip this tutorial T-T, press the "Skip" button on the bottom of this dialogue box.</key>
+	<string>Let's add some stickers XD. To get started, tap on the "Black" folder. If you want to skip this tutorial T-T, press the "Skip" button on the bottom of this dialogue box.</string>
+	<key>Let's try stretching your sticker ☜(^▽^)☞! Drag any corner handle and move it across the canvas.</key>
+	<string>Let's try stretching your sticker ☜(^▽^)☞! Drag any corner handle and move it across the canvas.</string>
+	<key>Library</key>
+	<string>Library</string>
+	<key>Lighting</key>
+	<string>Lighting</string>
+	<key>Low1</key>
+	<string>Low1</string>
+	<key>Low2</key>
+	<string>Low2</string>
+	<key>Low3</key>
+	<string>Low3</string>
+	<key>Low4</key>
+	<string>Low4</string>
+	<key>Luminosity</key>
+	<string>Luminosity</string>
+	<key>Lyrics</key>
+	<string>Lyrics</string>
+	<key>Medieval</key>
+	<string>Medieval</string>
+	<key>Metallic</key>
+	<string>Metallic</string>
+	<key>Motion Blur</key>
+	<string>Motion Blur</string>
+	<key>Multiply</key>
+	<string>Multiply</string>
+	<key>Neon</key>
+	<string>Neon</string>
+	<key>Next, try pinching out with two fingers from the center of the sticker to change its size (~_~).</key>
+	<string>Next, try pinching out with two fingers from the center of the sticker to change its size (~_~).</string>
+	<key>No commitment • Cancel anytime</key>
+	<string>No commitment • Cancel anytime</string>
+	<key>No previous purchases found to restore</key>
+	<string>No previous purchases found to restore</string>
+	<key>No stickers available</key>
+	<string>No stickers available</string>
+	<key>Noise</key>
+	<string>Noise</string>
+	<key>Normal</key>
+	<string>Normal</string>
+	<key>Note</key>
+	<string>Note</string>
+	<key>OK</key>
+	<string>OK</string>
+	<key>Once your sticker is added, extra controls pop up from the bottom =o. Tap the sticker to close the controls. Tap it tap again to bring them back.</key>
+	<string>Once your sticker is added, extra controls pop up from the bottom =o. Tap the sticker to close the controls. Tap it tap again to bring them back.</string>
+	<key>Opacity</key>
+	<string>Opacity</string>
+	<key>Open Settings</key>
+	<string>Open Settings</string>
+	<key>Options</key>
+	<string>Options</string>
+	<key>Orange</key>
+	<string>Orange</string>
+	<key>Overlay</key>
+	<string>Overlay</string>
+	<key>Photos</key>
+	<string>Photos</string>
+	<key>Pink</key>
+	<string>Pink</string>
+	<key>Pixelation</key>
+	<string>Pixelation</string>
+	<key>Portuguese</key>
+	<string>Portuguese</string>
+	<key>Privacy</key>
+	<string>Privacy</string>
+	<key>Privacy Policy</key>
+	<string>Privacy Policy</string>
+	<key>Purchase failed. Please try again.</key>
+	<string>Purchase failed. Please try again.</string>
+	<key>Purchase successful! Welcome to y2k plus!</key>
+	<string>Purchase successful! Welcome to y2k plus!</string>
+	<key>Purchases restored successfully!</key>
+	<string>Purchases restored successfully!</string>
+	<key>Purple</key>
+	<string>Purple</string>
+	<key>Quality</key>
+	<string>Quality</string>
+	<key>Red</key>
+	<string>Red</string>
+	<key>Redeem</key>
+	<string>Redeem</string>
+	<key>Remove BG</key>
+	<string>Remove BG</string>
+	<key>Resolution</key>
+	<string>Resolution</string>
+	<key>Restore</key>
+	<string>Restore</string>
+	<key>Russian</key>
+	<string>Russian</string>
+	<key>Save</key>
+	<string>Save</string>
+	<key>Save 80%</key>
+	<string>Save 80%</string>
+	<key>Screen</key>
+	<string>Screen</string>
+	<key>Send Us Feedback</key>
+	<string>Send Us Feedback</string>
+	<key>Settings</key>
+	<string>Settings</string>
+	<key>Share</key>
+	<string>Share</string>
+	<key>Showing cached stickers</key>
+	<string>Showing cached stickers</string>
+	<key>Silver</key>
+	<string>Silver</string>
+	<key>Size</key>
+	<string>Size</string>
+	<key>Sketch</key>
+	<string>Sketch</string>
+	<key>Skip</key>
+	<string>Skip</string>
+	<key>Soft Light</key>
+	<string>Soft Light</string>
+	<key>Spanish</key>
+	<string>Spanish</string>
+	<key>Start</key>
+	<string>Start</string>
+	<key>Start My Free Week</key>
+	<string>Start My Free Week</string>
+	<key>Sticker Controls</key>
+	<string>Sticker Controls</string>
+	<key>Stickers</key>
+	<string>Stickers</string>
+	<key>Success</key>
+	<string>Success</string>
+	<key>TAP TO ADD TEXT</key>
+	<string>TAP TO ADD TEXT</string>
+	<key>Tag us @y2kapp on TikTok for a chance to get featured in the app.</key>
+	<string>Tag us @y2kapp on TikTok for a chance to get featured in the app.</string>
+	<key>Tap to Upload Photo</key>
+	<string>Tap to Upload Photo</string>
+	<key>Tap to add text</key>
+	<string>Tap to add text</string>
+	<key>Terms</key>
+	<string>Terms</string>
+	<key>Terms of Use</key>
+	<string>Terms of Use</string>
+	<key>Text</key>
+	<string>Text</string>
+	<key>Texture</key>
+	<string>Texture</string>
+	<key>That's about it (^_^)/~ If you need me again click the help button on the top right of the screen. 𐙚‧₊˚⋅‧₊˚⋅‧₊˚⋅‧₊˚⋅‧₊˚⋅‧₊˚⋅</key>
+	<string>That's about it (^_^)/~ If you need me again click the help button on the top right of the screen. 𐙚‧₊˚⋅‧₊˚⋅‧₊˚⋅‧₊˚⋅‧₊˚⋅‧₊˚⋅</string>
+	<key>The photo couldn't be saved to your gallery. Please try again.</key>
+	<string>The photo couldn't be saved to your gallery. Please try again.</string>
+	<key>There are many ways that you can interact with stickers (-_q)! Try using your finger and dragging the sticker to a new spot on the canvas.</key>
+	<string>There are many ways that you can interact with stickers (-_q)! Try using your finger and dragging the sticker to a new spot on the canvas.</string>
+	<key>Tint</key>
+	<string>Tint</string>
+	<key>To add your sticker, horizontally scroll through the folder and tap on any sticker that you like (^_^;).</key>
+	<string>To add your sticker, horizontally scroll through the folder and tap on any sticker that you like (^_^;).</string>
+	<key>To delete a sticker, long press and hold it for a second until it disappears (@_@).</key>
+	<string>To delete a sticker, long press and hold it for a second until it disappears (@_@).</string>
+	<key>Transform</key>
+	<string>Transform</string>
+	<key>Tumblr</key>
+	<string>Tumblr</string>
+	<key>Tutorial</key>
+	<string>Tutorial</string>
+	<key>Type</key>
+	<string>Type</string>
+	<key>Ukrainian</key>
+	<string>Ukrainian</string>
+	<key>Unable to Save</key>
+	<string>Unable to Save</string>
+	<key>Unable to load stickers</key>
+	<string>Unable to load stickers</string>
+	<key>Unable to save image to photo library.</key>
+	<string>Unable to save image to photo library.</string>
+	<key>Unable to save image. Please try again or check photo library permissions in Settings.</key>
+	<string>Unable to save image. Please try again or check photo library permissions in Settings.</string>
+	<key>Unable to save. Please check photo library permissions in Settings.</key>
+	<string>Unable to save. Please check photo library permissions in Settings.</string>
+	<key>Unable to save. Please grant full photo library access in Settings to save your edited images.</key>
+	<string>Unable to save. Please grant full photo library access in Settings to save your edited images.</string>
+	<key>Unable to save. Please grant photo library access in Settings to save your edited images.</key>
+	<string>Unable to save. Please grant photo library access in Settings to save your edited images.</string>
+	<key>Unable to save. Please try again.</key>
+	<string>Unable to save. Please try again.</string>
+	<key>Underground</key>
+	<string>Underground</string>
+	<key>Unlock ALL filters and sticker effects</key>
+	<string>Unlock ALL filters and sticker effects</string>
+	<key>Unlock All Effects</key>
+	<string>Unlock All Effects</string>
+	<key>Upload</key>
+	<string>Upload</string>
+	<key>Upload Photo</key>
+	<string>Upload Photo</string>
+	<key>Version</key>
+	<string>Version</string>
+	<key>Vignette</key>
+	<string>Vignette</string>
+	<key>Wasted</key>
+	<string>Wasted</string>
+	<key>Weekly</key>
+	<string>Weekly</string>
+	<key>Weekly subscription not available</key>
+	<string>Weekly subscription not available</string>
+	<key>White</key>
+	<string>White</string>
+	<key>Windows</key>
+	<string>Windows</string>
+	<key>Yearly</key>
+	<string>Yearly</string>
+	<key>Yearly subscription not available</key>
+	<string>Yearly subscription not available</string>
+	<key>Yellow</key>
+	<string>Yellow</string>
+	<key>You can also edit the sticker using the Sticker Controls popup. Tap the "Luminosity" blend mode to apply it to your sticker o_O!</key>
+	<string>You can also edit the sticker using the Sticker Controls popup. Tap the "Luminosity" blend mode to apply it to your sticker o_O!</string>
+	<key>Your device is out of storage space. Free up some space and try again.</key>
+	<string>Your device is out of storage space. Free up some space and try again.</string>
+	<key>Your saved photos :)</key>
+	<string>Your saved photos :)</string>
+	<key>Your saved stickers :)</key>
+	<string>Your saved stickers :)</string>
+	<key>Zoom Blur</key>
+	<string>Zoom Blur</string>
+	<key>img_00%lld</key>
+	<string>img_00%lld</string>
+	<key>plus</key>
+	<string>plus</string>
+	<key>tap to add text</key>
+	<string>tap to add text</string>
+	<key>y2k</key>
+	<string>y2k</string>
+</dict>
+</plist>

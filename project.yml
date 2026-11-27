@@ -1,0 +1,37 @@
+name: y2k
+options:
+  bundleIdPrefix: com.y2k
+  deploymentTarget:
+    iOS: "12.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    ENABLE_BITCODE: NO
+    CLANG_ENABLE_MODULES: YES
+    IPHONEOS_DEPLOYMENT_TARGET: "12.0"
+targets:
+  y2k:
+    type: application
+    platform: iOS
+    sources:
+      - path: Y2K
+      - path: Resources
+        excludes:
+          - "AppIcon/**"
+    info:
+      path: Y2K/Support/Info.plist
+    entitlements:
+      path: Y2K/Support/y2k.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.y2k.ios12
+        PRODUCT_NAME: y2k
+        INFOPLIST_FILE: Y2K/Support/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO
+        SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+        SWIFT_COMPILATION_MODE: wholemodule

@@ -1,0 +1,85 @@
+name: build-deb
+
+# Builds the iOS 12 y2k clone on a real macOS runner (Xcode + Theos) and
+# uploads the installable .deb as a downloadable artifact.
+#
+# Run it from the Actions tab: Actions ▸ build-deb ▸ Run workflow.
+# The finished file appears under the run's "Artifacts" section as
+# y2k-ios12-deb — unzip it and you have the .deb to copy to the iPhone.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    name: Build y2k.app + .deb (iOS 12)
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+
+      - name: Install Theos
+        run: |
+          export THEOS=$HOME/theos
+          mkdir -p $THEOS
+          curl -sSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos | bash || \
+            git clone --recursive https://github.com/theos/theos.git $THEOS
+          echo "THEOS=$THEOS" >> $GITHUB_ENV
+          echo "$THEOS/bin" >> $GITHUB_PATH
+
+      - name: Fetch iOS SDKs for Theos
+        run: |
+          # Theos needs a real iPhoneOS SDK; pull the iOS 12.4 one plus a modern
+          # one for the linker, into the locations Theos expects.
+          $THEOS/bin/install-theos || true
+          if [ ! -d "$THEOS/sdks" ]; then
+            git clone --depth 1 --filter=blob:none --sparse https://github.com/theos/sdks.git /tmp/sdks
+            (cd /tmp/sdks && git sparse-checkout set iPhoneOS12.4.sdk iPhoneOS16.5.sdk)
+            cp -R /tmp/sdks/iPhoneOS12.4.sdk "$THEOS/sdks/" 2>/dev/null || true
+            cp -R /tmp/sdks/iPhoneOS16.5.sdk "$THEOS/sdks/" 2>/dev/null || true
+          fi
+          ls "$THEOS/sdks" || true
+
+      - name: Build package
+        run: |
+          set -o pipefail
+          make clean || true
+          make package FINALPACKAGE=1 ARCHS=arm64 2>&1 | tee build.log
+
+      - name: Locate the .deb
+        id: find
+        if: always()
+        run: |
+          DEB=$(find . -name '*.deb' -newermt '-1 hour' | head -n 1)
+          if [ -z "$DEB" ]; then DEB=$(find . -name '*.deb' | head -n 1); fi
+          echo "deb=$DEB" >> $GITHUB_OUTPUT
+          echo "Found: $DEB"
+          ls -la packages/ 2>/dev/null || true
+
+      - name: Upload .deb
+        if: always() && steps.find.outputs.deb != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: y2k-ios12-deb
+          path: ${{ steps.find.outputs.deb }}
+          if-no-files-found: error
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
+          if-no-files-found: ignore

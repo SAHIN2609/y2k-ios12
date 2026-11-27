@@ -1,0 +1,13 @@
+Package: com.y2k.ios12
+Name: y2k
+Version: 2.03
+Architecture: iphoneos-arm
+Description: y2k — 2000s photo editor (iOS 12 clone)
+  A working iOS 12 reconstruction of y2k 2.03: vintage LUT filters,
+  film grain, light leaks, stickers, lyrics text, collages and the
+  in-app gallery, rebuilt with UIKit + Core Image.
+Maintainer: y2k iOS 12 clone
+Author: y2k iOS 12 clone
+Section: Photography
+Depends: firmware (>= 12.0)
+Installed-Size: 22000
