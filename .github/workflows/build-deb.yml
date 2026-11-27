@@ -88,25 +88,22 @@ jobs:
           # pkgutil-compatible python unpacker.
           cd /opt/apple-swift
           python3 - <<'EOF'
-          import struct, zlib, os, subprocess, tempfile
+          import struct, zlib, re
           data = open('/tmp/macswift','rb').read()
-          assert data[:4] == b'xar!', data[:4]
-          header_size, version, toc_len, toc_ck, alg = struct.unpack('>IHIQQ', data[:28])[:5]
+          assert data[:4] == b'xar!', data[:8]
+          header_size = struct.unpack('>H', data[4:6])[0]
+          toc_len = struct.unpack('>Q', data[8:16])[0]
           toc = zlib.decompress(data[header_size:header_size+toc_len])
-          # crude but sufficient: pull every <offset>/<length> file entry
-          import re
           heap = header_size + toc_len
-          for m in re.finditer(rb'<file id="\d+">.*?</file>', toc, re.S):
+          for m in re.finditer(rb'<file id="\\d+">.*?</file>', toc, re.S):
               blk = m.group(0)
-              off = re.search(rb'<offset>(\d+)</offset>', blk)
-              ln = re.search(rb'<length>(\d+)</length>', blk)
+              off = re.search(rb'<offset>(\\d+)</offset>', blk)
+              ln = re.search(rb'<length>(\\d+)</length>', blk)
               nm = re.search(rb'<name>([^<]+)</name>', blk)
-              if not (off and ln and nm):
+              if not (off and ln and nm) or nm.group(1) != b'Payload':
                   continue
-              name = nm.group(1).decode()
-              if name != 'Payload':
-                  continue
-              raw = data[heap+int(off.group(1)): heap+int(off.group(1))+int(ln.group(1))]
+              start = heap + int(off.group(1))
+              raw = data[start:start+int(ln.group(1))]
               open('/tmp/payload.cpio.gz','wb').write(raw)
               print('Payload', len(raw), 'bytes')
           EOF
