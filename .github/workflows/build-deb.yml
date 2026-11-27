@@ -59,23 +59,41 @@ jobs:
           echo "SDKROOT=/opt/ios-sdk/$SDK_VERSION" >> $GITHUB_ENV
           ls /opt/ios-sdk/"$SDK_VERSION"
 
-      - name: Extract arm64-apple-ios Swift stdlib modules from a macOS toolchain
+      - name: Extract arm64-apple-ios Swift stdlib modules
         run: |
           set -eux
-          # A Linux swiftc has no modules for Apple targets. Apple's macOS
-          # toolchain ships them (arm64-apple-ios.swiftmodule inside each
-          # framework and in usr/lib/swift). We only need the module files and
-          # static/dynamic stdlib stubs, so pull the macOS tarball and keep just
-          # those - no macOS runner involved.
-          curl -fsSL -o /tmp/mac-swift.tar.gz \
-            "https://download.swift.org/swift-${SWIFT_VERSION}-release/xcode/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-osx.pkg.tar.gz" \
-            || echo "macOS tarball unavailable at that path"
-          ls -la /tmp/mac-swift.tar.gz 2>/dev/null || true
+          # A Linux swiftc ships no modules for Apple targets. Apple's macOS
+          # toolchain does (arm64-apple-ios.swiftmodule in usr/lib/swift and
+          # inside each framework). Pull the macOS toolchain tarball and keep
+          # just those - no macOS runner is involved.
+          #
+          # swift.org moved macOS toolchains to the .xctoolchain.tar.gz form;
+          # try each known layout until one downloads.
           mkdir -p /opt/apple-swift
-          tar xzf /tmp/mac-swift.tar.gz -C /opt/apple-swift --strip-components=1 2>/dev/null || true
+          GOT=0
+          for URL in \
+            "https://download.swift.org/swift-${SWIFT_VERSION}-release/xcode/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-osx.xctoolchain.tar.gz" \
+            "https://download.swift.org/swift-${SWIFT_VERSION}-release/xcode/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-osx.pkg" \
+            "https://download.swift.org/swift-${SWIFT_VERSION}-release/xcode/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-osx.tar.gz" ; do
+            echo "trying $URL"
+            if curl -fsSL --max-time 900 -o /tmp/macswift "$URL"; then
+              echo "downloaded $URL"
+              GOT=1
+              break
+            fi
+          done
+          [ "$GOT" = "1" ] || { echo "::error::could not download a macOS Swift toolchain"; exit 1; }
+          case "$(file -b /tmp/macswift)" in
+            *XZ*)   tar xJf /tmp/macswift -C /opt/apple-swift --strip-components=1 ;;
+            *gzip*) tar xzf /tmp/macswift -C /opt/apple-swift --strip-components=1 ;;
+            *)      # .pkg is an xar archive: unpack the Payload payload
+                    mkdir -p /tmp/pkg && cd /tmp/pkg
+                    ar x /tmp/macswift 2>/dev/null || true
+                    ls
+                    ;;
+          esac
           echo "--- iOS modules found ---"
           find /opt/apple-swift -type d -name "arm64-apple-ios*" 2>/dev/null | head -20 || true
-          find /opt/apple-swift -name "*.swiftmodule" -path "*arm64-apple-ios*" 2>/dev/null | head -20 || true
 
       - name: Typecheck the Swift sources
         id: typecheck
