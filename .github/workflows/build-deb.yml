@@ -87,25 +87,37 @@ jobs:
           # the toolchain. xar isn't packaged on Ubuntu runners, so use the
           # pkgutil-compatible python unpacker.
           cd /opt/apple-swift
-          python3 - <<'EOF'
-          import struct, zlib, re
+          # xar layout: "xar!" + header(28 bytes, size at 4..6 as H, TOC len at
+          # 8..16 as Q) + zlib TOC + heap. No regex, no heredoc quoting issues.
+          python3 /dev/stdin <<'EOF'
+          import struct, zlib
           data = open('/tmp/macswift','rb').read()
           assert data[:4] == b'xar!', data[:8]
           header_size = struct.unpack('>H', data[4:6])[0]
           toc_len = struct.unpack('>Q', data[8:16])[0]
           toc = zlib.decompress(data[header_size:header_size+toc_len])
           heap = header_size + toc_len
-          for m in re.finditer(rb'<file id="\\d+">.*?</file>', toc, re.S):
-              blk = m.group(0)
-              off = re.search(rb'<offset>(\\d+)</offset>', blk)
-              ln = re.search(rb'<length>(\\d+)</length>', blk)
-              nm = re.search(rb'<name>([^<]+)</name>', blk)
-              if not (off and ln and nm) or nm.group(1) != b'Payload':
-                  continue
-              start = heap + int(off.group(1))
-              raw = data[start:start+int(ln.group(1))]
-              open('/tmp/payload.cpio.gz','wb').write(raw)
-              print('Payload', len(raw), 'bytes')
+          i = 0
+          found = False
+          while True:
+              i = toc.find(b'<name>', i)
+              if i < 0:
+                  break
+              j = toc.find(b'</name>', i)
+              name = toc[i+6:j]
+              blk_start = toc.rfind(b'<file', 0, i)
+              blk_end = toc.find(b'</file>', j)
+              blk = toc[blk_start:blk_end]
+              if name == b'Payload':
+                  off = int(blk.split(b'<offset>')[1].split(b'<')[0])
+                  ln = int(blk.split(b'<length>')[1].split(b'<')[0])
+                  raw = data[heap+off:heap+off+ln]
+                  open('/tmp/payload.cpio.gz','wb').write(raw)
+                  print('Payload', len(raw), 'bytes')
+                  found = True
+              i = j
+          if not found:
+              print('no Payload member found in xar TOC')
           EOF
           cd /opt/apple-swift
           gunzip -c /tmp/payload.cpio.gz | cpio -idmu --quiet 2>/dev/null || true
