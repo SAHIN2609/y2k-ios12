@@ -9,7 +9,7 @@
 //
 
 TARGET := iphone:clang:latest:12.0
-ARCHS := arm64 arm64e
+ARCHS := arm64
 INSTALL_TARGET_PROCESSES = y2k
 
 include $(THEOS)/makefiles/common.mk
@@ -38,7 +38,8 @@ after-y2k-stage::
 	@cp -R Resources/AppIcon $(THEOS_STAGING_DIR)/Applications/y2k.app/ 2>/dev/null || true
 	@for d in Resources/*.lproj; do cp -R "$$d" $(THEOS_STAGING_DIR)/Applications/y2k.app/ ; done
 	@cp Resources/*.ttf Resources/*.otf $(THEOS_STAGING_DIR)/Applications/y2k.app/ 2>/dev/null || true
-	@$(THEOS)/toolchain/*/bin/ldid -S Y2K/Support/y2k.entitlements $(THEOS_STAGING_DIR)/Applications/y2k.app/y2k 2>/dev/null || true
+	@ldid -S Y2K/Support/y2k.entitlements $(THEOS_STAGING_DIR)/Applications/y2k.app/y2k 2>/dev/null \
+		|| $(THEOS)/toolchain/*/bin/ldid -S Y2K/Support/y2k.entitlements $(THEOS_STAGING_DIR)/Applications/y2k.app/y2k 2>/dev/null || true
 
 after-y2k-install::
 	@echo ">> y2k installed to /Applications/y2k.app"
