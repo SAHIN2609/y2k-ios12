@@ -63,18 +63,19 @@ jobs:
           ls /opt/ios-sdk/"$SDK_VERSION"
           echo "SDKROOT=/opt/ios-sdk/$SDK_VERSION" >> $GITHUB_ENV
 
-      - name: Fetch ldid
+      - name: Install the Swift cross-compilation SDK for Apple targets
         run: |
           set -eux
-          # Build ldid from source: the prebuilt Procursus debs 404'd and the
-          # arm64 package would not run on this x86_64 runner anyway.
-          sudo apt-get install -y --no-install-recommends cmake libssl-dev libplist-dev git
-          git clone --depth 1 https://github.com/ProcursusTeam/ldid.git /tmp/ldid-src
-          cd /tmp/ldid-src
-          git submodule update --init --recursive
-          make -j"$(nproc)" CXXFLAGS="-O2 -std=c++17"
-          sudo install -m 0755 ./ldid /usr/local/bin/ldid
-          ldid -v || ldid --version || true
+          # A Linux swiftc ships no arm64-apple-ios stdlib modules, and theos/sdks
+          # has headers only. swift.org publishes the official cross-compilation
+          # bundle (Apple targets from Linux); that is what provides them.
+          BUNDLE="swift-${SWIFT_VERSION}-RELEASE-static-linux-x86_64"
+          curl -fsSL -o /tmp/xc.tar.gz \
+            "https://download.swift.org/swift-${SWIFT_VERSION}-release/static-linux/${BUNDLE}.tar.gz"
+          tar xzf /tmp/xc.tar.gz -C /tmp
+          echo "--- looking for iOS swiftmodules ---"
+          find /tmp -type d -name "arm64-apple-ios*" | head -10 || true
+          find /tmp -name "*.swiftmodule" -path "*ios*" | head -10 || true
 
       - name: Typecheck every Swift file against the iOS SDK
         id: typecheck
